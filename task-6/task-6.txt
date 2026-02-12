@@ -1,0 +1,18 @@
+Tasks-6 
+
+* Create Route 53 hosted zone
+* Add domain DNS records
+* Connect custom domain to ALB
+* Create alias A record for ALB
+* Add CNAME records for subdomains
+* Request ACM SSL certificate
+* Validate SSL certificate using DNS
+* Configure HTTPS listener on ALB
+* Redirect HTTP traffic to HTTPS
+* Create target groups for ALB
+* Attach target groups to ALB
+* Set up ALB health checks
+* Enable Route 53 health checks
+* Enable ALB access logs
+* Verify domain and HTTPS access
+* Check DNS propagation
