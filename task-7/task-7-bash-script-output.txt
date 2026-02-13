@@ -1,0 +1,24 @@
+HELLO
+1.host name: ip-172-31-16-11.us-west-2.compute.internal
+2.date and time: Fri Feb 13 08:34:13 UTC 2026
+3.uptime:  08:34:13 up 3:52, 3 users, load average: 0.03, 0.24, 0.61
+4.logged in users:  ec2-user pts/0 2026-02-13 04:43 (103.233.73.252) ec2-user pts/1 2026-02-13 06:00 (103.233.73.252) ec2-user pts/2 2026-02-13 06:01 (103.233.73.252)
+5.cpu usage:
+CPU Idle: id, - CPU Used: 100
+6.memory usage:
+Memory used: 200912 Total Mem: 938836 %Mem used:21.4001
+7.disk usage:
+ Alert / is 20
+ Alert /boot/efi is 13
+8.top 5 processes consuming the most CPU:
+    PID COMMAND         %CPU
+   3923 bash            84.4
+      1 systemd          0.0
+      2 kthreadd         0.0
+      3 rcu_gp           0.0
+      4 rcu_par_gp       0.0
+9.process is consuming more than 70% CPU:
+Fri Feb 13 08:34:13 UTC 2026    3923 bash            84.4
+~
+~
+~
