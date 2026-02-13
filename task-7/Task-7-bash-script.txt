@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+LOG_DIR="logs"
+DATE=$(date +%F)
+mkdir -p "$LOG_DIR"
+
+exec >> "$LOG_DIR/system_report_$DATE.log" 2>&1
+
+
+echo "host name: "$(hostname)
+echo "date and time: "$(date)
+echo "uptime: "$(uptime)
+echo "logged in users: " $(who)
+
+echo "cpu usage: "
+top -bn1 | grep "Cpu(s)" | awk '{print "CPU Idle:", $8 " - CPU Used:", 100-$8}'
+
+echo "memory usage: "
+free | awk 'NR==2{print "Memory used:", $3, "Total Mem:",$2, "%Mem used:"$3/$2*100}'
+
+echo "disk usage: "
+df -h | awk 'NR>1{gsub("%",""); if($5>10) print " Alert "  $6  " is "  $5  }'
+
+echo "top 5 processes consuming the most CPU: "
+ps -eo pid,comm,%cpu --sort=-%cpu | head -6
+
+echo "process is consuming more than 70% CPU: "
+ps -eo pid,comm,%cpu --sort=-%cpu | awk -v d="$(date)" '$3 > 70 {print d, $0}' >> high_cpu_process.log
