@@ -1,0 +1,6 @@
+IAM Tasks
+
+Create IAM user roles Developer, Tester, Admin
+Attach policies for S3 and EC2 access
+Assign IAM role to EC2 for S3 bucket access
+Enable MFA for users

@@ -1,0 +1,112 @@
+Q: Task: AWS Transit Gateway
+
+*Objective:*
+Learn how to create and use an AWS Transit Gateway.
+
+*Instructions:*
+
+1. Create an *AWS Transit Gateway*.
+2. Create three VPCs with different CIDR blocks.
+3. Attach VPCs to the *Transit Gateway*.
+4. Update *route tables* in each VPC to use the Transit Gateway.
+5. Allow required traffic in *security groups*.
+6. Verify that the Transit Gateway is working by checking attachments and routes.
+
+ANSWER:
+
+1.Create the Transit Gateway
+
+Name → My-TGW
+ASN → default
+Default route table → enable
+Click Create
+Wait → available
+
+2.Create three VPCs,three subnets with CIDR
+
+. VPC1		- 10.0.0.0/16
+  subnet	- 10.0.1.0/24
+  
+. VPC2		- 10.1.0.0/16
+  subnet	- 10.1.1.0/24
+  
+. VPC3      - 10.2.0.0/16
+  subnet    - 10.2.1.0/24
+
+3.Create 1 EC2 in each VPC, ( take EC2 in VPC1 as bastion-server or Jump server to connect to other VPCs Ec2s )
+
+4.Attach VPCs to Transit Gateway
+
+VPC → Transit Gateway Attachments → Create
+Do this 3 times
+For each:
+Attachment type → VPC
+Select TGW
+Select VPC
+Select subnet
+Result:
+3 attachments → Available
+
+5.Create Internet Gateway and attach to VPC1
+
+6.Update Route tables
+ Add:
+Internet Gateway (optional for testing),attach to vpc1-bastion-routetable
+
+Without this → NO traffic
+For VPC1 route table
+Add:
+Destination: 10.1.0.0/16 → Target: Transit Gateway
+Destination: 10.2.0.0/16 → Target: Transit Gateway
+
+For VPC2
+10.0.0.0/16 → TGW
+10.2.0.0/16 → TGW
+
+For VPC3
+10.0.0.0/16 → TGW
+10.1.0.0/16 → TGW
+
+7. Creaet Security Groups
+ For VPC1
+  Type ssh , source - custom MY IP 
+ For VPC2
+  Type all ICMP-IP4	, source- custom VPC1 cidr
+  
+8.If EC2 has private Ip , you cannot ssh directly from your laptop
+Private IP = reachable only inside VPC, not internet
+while creating VPC1-EC2, SUBNET must be in Public ,so select
+Auto-assign Public IP = ENABLE
+
+9.Then connect to VPC1-EC2-BASTION THROUGH SSH
+
+ssh -i key.pem ec2-user@<bastion-public-ip>
+
+From bastion ec2 to ping VPC2-EC2 private IP, it must work.
+
+10.Then connect to the VPC2-EC2, BY copying the local pem file to VPC1-EC2 from local using scp.
+
+$ scp -i linux.pem linux.pem ec2-user@54.186.173.39
+
+Inside bastion:
+ssh -i ec2-user@10.0.1.25
+
+11.Check Transit Gateway Route Tables
+
+You should see:
+
+10.0.0.0/16 → attachment1
+10.1.0.0/16 → attachment2
+10.2.0.0/16 → attachment3
+
+If success → 🎉 TGW working
+
+
+
+
+
+  
+ 
+ 
+
+ 

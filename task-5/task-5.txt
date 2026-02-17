@@ -1,0 +1,13 @@
+Task: AWS Transit Gateway
+
+*Objective:*
+Learn how to create and use an AWS Transit Gateway.
+
+*Instructions:*
+
+1. Create an *AWS Transit Gateway*.
+2. Create three VPCs with different CIDR blocks.
+3. Attach VPCs to the *Transit Gateway*.
+4. Update *route tables* in each VPC to use the Transit Gateway.
+5. Allow required traffic in *security groups*.
+6. Verify that the Transit Gateway is working by checking attachments and routes.
