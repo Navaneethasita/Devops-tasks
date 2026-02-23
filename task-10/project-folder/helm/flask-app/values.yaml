@@ -1,0 +1,73 @@
+# Number of replicas
+replicaCount: 1
+
+# Docker image settings
+image:
+  repository: navaneetha4/flask-app
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+# Service settings
+service:
+  type: LoadBalancer
+  port: 5000
+
+# Resource requests and limits
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+
+# Liveness probe
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+# Readiness probe
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+# ServiceAccount settings
+serviceAccount:
+  create: true
+  name: ""
+
+# Ingress settings (disabled)
+ingress:
+  enabled: false
+  annotations: {}
+  hosts: []
+  tls: []
+
+# HTTPRoute settings (disabled)
+httpRoute:
+  enabled: false
+  hosts: []
+  annotations: {}
+  tls: []
+
+# Autoscaling settings (disabled)
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
+
+# Optional: Pod labels and annotations
+podLabels: {}
+podAnnotations: {}
+
+# Optional: Node selectors, tolerations, affinity
+nodeSelector: {}
+tolerations: []
+affinity: {}
