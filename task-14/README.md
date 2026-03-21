@@ -162,21 +162,3 @@ File uploaded: test.txt (524 bytes) in bucket my-demo-bucket
 
 ---
 
-## 🚀 Future Enhancements
-
-* Process file content (CSV/JSON parsing)
-* Store results in DynamoDB
-* Send alerts via SNS
-* Add Step Functions workflow
-
----
-
-## 👨‍💻 Author
-
-**Your Name**
-
----
-
-## ⭐ Support
-
-If you found this helpful, give this repo a ⭐ on GitHub!
