@@ -7,7 +7,7 @@ This project is a full-stack **MEAN (MongoDB, Express, Angular, Node.js)** appli
 The application is fully containerized using Docker and deployed on AWS EC2 with an automated CI/CD pipeline using GitHub Actions.
 
 
----
+![alt text](<Project Architecture.png>)
 
 ## ⚙️ Features
 
